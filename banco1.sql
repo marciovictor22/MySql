@@ -74,6 +74,9 @@ update sala
 set andar = '3'
 where id_sala = 2;
 
+-- descrição da tabela 'sala' e 'aluno'?
+desc sala;
+describe aluno;
 
-
-select * from sala;
+-- Mostrar as TABELAS?
+show tables;
