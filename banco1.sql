@@ -45,14 +45,35 @@ insert into sala values (default, '40', '1');
 insert into sala values (default, '35', '2');
 insert into sala values (default, '70', '3');
 
+-- OU?
+/*
+insert into escola.sala values ('40','1'), ('35','2'), ('70','3');
+Um Shortchut para facilitar o codigo.
+*/
+
 -- Insira dentro da tabela 'aluno' os valores...?
 insert into aluno values (default, 'Marcio', 'marcio@xyz.com.br', '12345-1234', '1.70');
 insert into aluno values (default, 'Victor', 'victor@xyz.com.br', '12345-1234', '1.80');
 insert into aluno values (default, 'Luciana', 'luciana@xyz.com.br', '12345-1234', '1.50');
 
--- atualizar a tabela aluno no conjunto/coluna telefone onde(id)?
+/* 
+atualizar a tabela aluno 
+no conjunto/coluna telefone
+onde o id é...
+*/
 update aluno
 set telefone = '34991234567'
 where id = 3;
 
-select * from aluno;
+/*
+atualizar a tabela sala
+no conjunto/coluna andar
+onde o id é...
+*/
+update sala
+set andar = '3'
+where id_sala = 2;
+
+
+
+select * from sala;
