@@ -1,0 +1,61 @@
+desc pessoas;
+
+-- Adicionar uma coluna profissao na tabela pessoas --
+alter table pessoas
+add column profissao varchar(10);
+
+-- Deletar a coluna profissao da tabela pessoas --
+alter table pessoas
+drop column profissao;
+
+-- Adicionar a coluna profissao depois/após da/á coluna nome --
+alter table pessoas
+add profissao varchar(10) not null default '' after nome;
+-- É opcional colocar o 'column' --
+
+-- Modificando definições --
+/* Modificar a definição da coluna profissao, antes profissao varchar(10)
+depois profissao varchar(20).
+*/
+alter table pessoas
+modify profissao varchar(20);
+
+-- Modificar o nome de uma coluna --
+/* Mudar o nome da coluna profissao para prof
+   OBS: Quando trocar o nome da coluna as configurações antigas serão deletadas/apagadas
+   automaticamente. Para continuar com as configurações e só reescrever.
+ */
+alter table pessoas
+change column profissao prof varchar(20) not null default '';
+
+
+-- Adicionar a coluna codigo no inicio/como primeiro --
+alter table pessoas
+add column codigo int first;
+
+-- Renomear o nome da Tabela --
+alter table pessoas
+rename to individuo;
+
+create table if not exists cursos (
+nome varchar(30) not null unique,
+descricao text,
+carga int unsigned,
+totalaulas int,
+ano year default '2016'
+) default charset=utf8;
+-- OBS: Esqueci de colocar o unsigned no totalaulas, então usei o modify...
+alter table cursos
+modify  totalaulas text;
+
+-- Adicionar a coluna idcurso como primeiro na tabela cursos --
+alter table cursos
+add column idcurso int first;
+
+-- Adicionar Chave Primária --
+alter table cursos
+add primary key (idcurso);
+
+desc cursos;
+-- Para apagar tabela: drop table ...... ;
+
