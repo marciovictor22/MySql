@@ -130,4 +130,11 @@ select now()
 from cargo as c;
 */
 
+-- Questão D - Faça uma seleção dos funcionário que começam com “J” e que o cargo seja "CAIXA".   
+select *
+from funcionario as f
+inner join cargo as c
+on f.codcargo = c.codcargo
+where Nomefuncionario like 'J%';
+
 select * from funcionario;
