@@ -138,3 +138,9 @@ on f.codcargo = c.codcargo
 where Nomefuncionario like 'J%';
 
 select * from funcionario;
+
+
+-- Questão G
+insert into cargo values
+('C4', 'Estoquista', '1200.00'),
+('C5', 'Contador', '2000.00');
