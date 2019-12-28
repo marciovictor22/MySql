@@ -140,7 +140,26 @@ where Nomefuncionario like 'J%';
 select * from funcionario;
 
 
--- Questão G
+-- Continuação
+
 insert into cargo values
 ('C4', 'Estoquista', '1200.00'),
 ('C5', 'Contador', '2000.00');
+
+-- Mostrar os Valores de forma decrescente
+select * from cargo
+order by valorcargo desc
+limit 2;
+
+-- Ordenar o Nome dos Funcionarios da Tabela Funcionarios
+select*
+from funcionario
+order by nomefuncionario;
+
+-- Mostrar todos os Funcionarios que tenha o cargo Caixa
+select f.*
+from funcionario as f
+inner join cargo as p
+on f.codcargo = p.codcargo
+where f.nomefuncionario like 'j%'
+and p.nomecargo = 'caixa';
