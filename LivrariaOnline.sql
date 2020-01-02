@@ -17,3 +17,8 @@ email varchar(40),
 telefone varchar(12),
 compra int
 );
+
+create table if not exists caixa (
+pagamento decimal(3,2),
+itens_venda int
+);
