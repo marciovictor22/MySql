@@ -15,5 +15,5 @@ id int not null auto_increment primary key,
 nome varchar (30),
 email varchar(40),
 telefone varchar(12),
-itens_venda int
+compra int
 );
