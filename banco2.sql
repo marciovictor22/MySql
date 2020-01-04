@@ -165,8 +165,12 @@ where f.nomefuncionario like 'j%'
 and p.nomecargo = 'caixa';
 
 -- Questão M
-SELECT F.*, C.*
+
+SELECT AVG(valorcargo) from cargo;
+
+SELECT F.matricula, f.nomefuncionario, c.nomecargo, C.valorcargo
 FROM funcionario  as F
 INNER JOIN cargo as C
 ON F.codcargo = C.codcargo
-WHERE C.valorcargo < (SELECT AVG(valorcargo) from cargo);
+WHERE C.valorcargo >= (SELECT AVG(valorcargo) from cargo)
+order by f.nomefuncionario;
