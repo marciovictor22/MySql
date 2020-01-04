@@ -163,3 +163,10 @@ inner join cargo as p
 on f.codcargo = p.codcargo
 where f.nomefuncionario like 'j%'
 and p.nomecargo = 'caixa';
+
+-- Questão M
+SELECT F.*, C.*
+FROM funcionario  as F
+INNER JOIN cargo as C
+ON F.codcargo = C.codcargo
+WHERE C.valorcargo < (SELECT AVG(valorcargo) from cargo);
