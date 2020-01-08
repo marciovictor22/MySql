@@ -26,6 +26,13 @@ idCliente int,
 idLivro int
 ) engine = innodb;
 
+create table if not exists carrinho(
+idCarrinho int not null auto_increment primary key,
+itens_de_compra int,
+idCliente int,
+idLivro int
+) engine = innodb;
+
 insert into livro values
 (default, 'A Sutil Arte de Ligar o Foda-se', 'Chega de tentar buscar um sucesso que só existe na sua cabeça. Chega de se torturar ...', '224', 'Mark Manson', '26.90'),
 (default, 'O Poder do Hábito', 'Durante os últimos dois anos, uma jovem transformou quase todos os aspectos de sua vida. Parou de fumar, correu uma maratona e foi promovida. Em um laboratório ...', '408', 'Charles Duhigg', '36.70'),
@@ -41,6 +48,11 @@ insert into caixa values
 (default, '37', '1', '7', '2'),
 (default, '21', '1', '8', '5'),
 (default, '27', '1', '9', '1');
+
+insert into carrinho values
+(default, '1', '7', '2'),
+(default, '1', '8', '4'),
+(default, '1', '9', '1');
 
 
 -- Adicionando Foreign Key - Chave Estrangeira
@@ -60,3 +72,14 @@ alter table caixa
 add constraint fk_caixa_idCliente
 foreign key (idCliente)
 references cliente (idCliente);
+
+-- Tabela do Carrinho de compras
+alter table carrinho
+add constraint fk_carrinho_idCliente
+foreign key (idCliente)
+references cliente (idCliente);
+
+alter table carrinho
+add constraint fk_carrinho_idLivro
+foreign key (idLivro)
+references livro (idLivro);
