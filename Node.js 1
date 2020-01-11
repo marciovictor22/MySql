@@ -1,0 +1,96 @@
+//App.js
+const mysql = require('mysql');
+
+const uriConnection = {
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '123456',
+    database: 'loja'
+};
+
+const connection = mysql.createConnection(uriConnection);
+
+connection.connect(function (err) {
+    if (err)
+        return console.log(err);
+        console.log('Conectou!');
+});
+
+// Adicionar valores na tabela usuarios
+function addRows(conn) {
+    const sql = "INSERT INTO usuarios(usuario, senha, status) VALUES ?";
+    const values = [['teste 1', '123456', '1'], ['teste2', '123456', '1'], ['teste3', '123456', '1']];
+
+    conn.query(sql, [values],
+        function (error, results, fields) {
+            if (error)
+                return console.log(error);
+            console.log('adicionou registros!');
+        });
+}
+
+addRows(connection);
+connection.end();
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+//index.js
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const port = 3000;
+const mysql = require('mysql');
+
+// Configurando o body parser
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+// definindo as rotas
+const router = express.Router();
+
+// rota raiz
+router.get('/', (req, res) => res.json({message: 'Funcionando!'}));
+app.use('/', router);
+
+// iniciar o servidor
+app.listen(port);
+console.log('Servidor iniciado e aguardando conexões na porta 3000');
+
+
+var uriConnection = {
+    host: 'localhost',
+    port: 3306,
+    user: 'root',
+    password: '123456',
+    database: 'loja'
+};
+
+function execSQLQuery(sqlQry, values, res){
+    const connection = mysql.createConnection(uriConnection);
+    
+    connection.query(sqlQry, values,
+        function(error, results, fields){
+            if(error)
+                res.json(error);
+            else
+                res.json(results);
+            connection.end();
+            console.log('Executou: [SQL = ' + sqlQry + '] - [Values = ' + values +'] ');
+        });
+}
+
+// Rota Clientes
+router.get('/clientes',
+    (req, res) => {
+        let sqlQry = 'SELECT * FROM usuarios';
+        let values = [];
+        
+        if(req.params.id) {
+            sqlQry += 'Where idCliente = ?';
+            values = [parseInt(req.params.id)];
+        }
+        execSQLQuery(sqlQry, values, res);
+    }
+);
