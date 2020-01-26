@@ -31,6 +31,12 @@ cliente varchar(20),
 livro int
 ) engine = innodb;
 
+create table if not exists genero (
+idGenero int auto_increment not null primary key,
+nome varchar(25)
+) engine = innodb;
+
+
 insert into livro values
 ( default, 'A Sutil Arte de Ligar o Foda-se', 'Chega de tentar buscar um sucesso que só existe na sua cabeça. Chega de se torturar ...', '224', 'Mark Manson', '26.90'),
 ( default, 'O Poder do Hábito', 'Durante os últimos dois anos, uma jovem transformou quase todos ...', '408', 'Charles Duhigg', '36.70'),
@@ -51,6 +57,22 @@ insert into carrinho values
 (default, '1', '2'),
 (default, '2', '4'),
 (default, '3', '1');
+
+insert into genero values
+(default, 'Autobiografia'),
+(default, 'Biografia'),
+(default, 'Fantasia'),
+(default, 'Fantasia Científica'),
+(default, 'Horror'),
+(default, 'Paródia'),  
+(default, 'Suspense'),
+(default, 'Drama'),
+(default, 'Mistério'),
+(default, 'Romance'),
+(default, 'Aventura'),
+(default, 'Luta'),
+(default, 'Terror'),
+(default, 'Ação');
 
 -- --------------------  Ligando as Tabelas  --------------------
 create table if not exists cliente_livro (
