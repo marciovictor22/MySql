@@ -7,7 +7,10 @@ nome varchar(50) not null unique,
 descricao text,
 total_paginas int,
 autor varchar(30) not null unique,
-livro_valor decimal(6,2)
+livro_valor decimal(6,2),
+editora varchar(15),
+ano_de_publicacao varchar(4),
+edicao varchar(3)
 ) engine = innodb;
 
 create table if not exists cliente(
@@ -38,10 +41,10 @@ nome varchar(25)
 
 
 insert into livro values
-( default, 'A Sutil Arte de Ligar o Foda-se', 'Chega de tentar buscar um sucesso que só existe na sua cabeça. Chega de se torturar ...', '224', 'Mark Manson', '26.90'),
-( default, 'O Poder do Hábito', 'Durante os últimos dois anos, uma jovem transformou quase todos ...', '408', 'Charles Duhigg', '36.70'),
-( default, 'Sapiens: Uma breve história da humanidade: 1288', '"Um dos maiores fenômenos editoriais dos ...', '592', 'Yuval Noah Harari', '16.10'),
-( default, 'O milagre da manhã', 'Conheça o método simples e eficaz que vai proporcionar a vida dos sonhos ― antes das 8 horas da manhã! Hal Elrod ...', '196', 'Hal Elrod', '20.90');
+( default, 'A Sutil Arte de Ligar o Foda-se', 'Chega de tentar buscar um sucesso que só existe na sua cabeça. Chega de se torturar ...', '224', 'Mark Manson', '26.90', 'Intrínseca', '2017', '1ª'),
+( default, 'O Poder do Hábito', 'Durante os últimos dois anos, uma jovem transformou quase todos ...', '408', 'Charles Duhigg', '36.70', 'Objetiva', '2012', '1ª'),
+( default, 'Sapiens: Uma breve história da humanidade: 1288', '"Um dos maiores fenômenos editoriais dos ...', '592', 'Yuval Noah Harari', '16.10', 'L&PM', '2015', '1ª'),
+( default, 'O milagre da manhã', 'Conheça o método simples e eficaz que vai proporcionar a vida dos sonhos ― antes das 8 horas da manhã! Hal Elrod ...', '196', 'Hal Elrod', '20.90', 'BestSeller', '2016', '56ª');
 
 insert into cliente values
 (default, 'Joana', '975124536', '2'),
