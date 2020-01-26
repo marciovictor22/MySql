@@ -39,6 +39,13 @@ idGenero int auto_increment not null primary key,
 nome varchar(25)
 ) engine = innodb;
 
+create table if not exists funcionario (
+idFuncionario int not null auto_increment primary key,
+nome varchar(25),
+email varchar(50),
+matricula varchar(7),
+cargo varchar(25)
+) engine = innodb;
 
 insert into livro values
 ( default, 'A Sutil Arte de Ligar o Foda-se', 'Chega de tentar buscar um sucesso que só existe na sua cabeça. Chega de se torturar ...', '224', 'Mark Manson', '26.90', 'Intrínseca', '2017', '1ª'),
@@ -76,6 +83,12 @@ insert into genero values
 (default, 'Luta'),
 (default, 'Terror'),
 (default, 'Ação');
+
+insert into funcionario values
+(default, 'Luis Carlos', 'luiscarlos@gmail.com', '1234567', 'Balconista'),
+(default, 'Alessandra Rocha', 'alessadrarocha@gmail.com', '2345678', 'Gerente'),
+(default, 'Felipe Ferreira', 'felipeferreira@gmail.com', '3456789', 'Segurança'),
+(default, 'Layla Santos', 'laylasantos@gmail.com', '4567891', 'Estágiaria');
 
 -- --------------------  Ligando as Tabelas  --------------------
 create table if not exists cliente_livro (
