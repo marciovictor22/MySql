@@ -1,6 +1,13 @@
 create database if not exists livraria;
 use livraria;
 
+create table if not exists livraria(
+idLivraria int not null auto_increment primary key,
+nome varchar(30),
+email varchar(50),
+cnpj varchar(18)
+) engine = innodb;
+
 create table if not exists livro(
 idLivro int not null auto_increment primary key,
 nome varchar(50) not null unique,
@@ -47,6 +54,15 @@ matricula varchar(7),
 cargo varchar(25)
 ) engine = innodb;
 
+create table if not exists editora (
+idEditora int not null auto_increment primary key,
+nome varchar(25),
+cnpj varchar(18)
+) engine = innodb;
+
+insert into livraria values
+(default, 'PUD - Livraria Online', 'pudlivrariaonline@gmail.com', '00.111.000/0001-01');
+
 insert into livro values
 ( default, 'A Sutil Arte de Ligar o Foda-se', 'Chega de tentar buscar um sucesso que só existe na sua cabeça. Chega de se torturar ...', '224', 'Mark Manson', '26.90', 'Intrínseca', '2017', '1ª'),
 ( default, 'O Poder do Hábito', 'Durante os últimos dois anos, uma jovem transformou quase todos ...', '408', 'Charles Duhigg', '36.70', 'Objetiva', '2012', '1ª'),
@@ -89,6 +105,12 @@ insert into funcionario values
 (default, 'Alessandra Rocha', 'alessadrarocha@gmail.com', '2345678', 'Gerente'),
 (default, 'Felipe Ferreira', 'felipeferreira@gmail.com', '3456789', 'Segurança'),
 (default, 'Layla Santos', 'laylasantos@gmail.com', '4567891', 'Estágiaria');
+
+insert into editora values
+(default, 'Intrínseca', '06.985.027/0001-67'),
+(default, 'Objetiva', '10.261.558/0001-84'),
+(default, 'L&PM', '87.932.463/0001-70'),
+(default, 'BestSeller', '04.839.149/0001-10');
 
 -- --------------------  Ligando as Tabelas  --------------------
 create table if not exists cliente_livro (
