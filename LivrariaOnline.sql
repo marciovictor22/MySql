@@ -141,6 +141,11 @@ idEditora int,
 idAutor int
 ) engine = innodb;
 
+create table if not exists genero_livro(
+idGenero int,
+idLivro int
+) engine = innodb;
+
 -- Adicionando Foreign Key - Chave Estrangeira
 -- cliente_livro
 alter table cliente_livro
@@ -198,3 +203,12 @@ references `livraria`.`editora` (`idEditora`);
 alter table editora_autor
 add constraint `fk_editora_autor` foreign key (`idAutor`)
 references `livraria`.`autor` (`idAutor`);
+
+-- genero_livro
+alter table genero_livro
+add constraint `fk_genero` foreign key (`idGenero`)
+references `livraria`.`genero` (`idGenero`);
+
+alter table genero_livro
+add constraint `fk_genero_livro` foreign key (`idLivro`)
+references `livraria`.`livro` (`idLivro`);
