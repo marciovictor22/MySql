@@ -46,7 +46,6 @@ livro int
 
 create table if not exists genero (
 idGenero int auto_increment not null primary key,
-idLivro int,
 nome varchar(25)
 ) engine = innodb;
 
@@ -63,7 +62,6 @@ create table if not exists editora (
 idEditora int not null auto_increment primary key,
 nome varchar(25),
 cnpj varchar(18)
-idLivro int,
 ) engine = innodb;
 
 insert into livraria values
