@@ -6,16 +6,19 @@ idLivraria int not null auto_increment primary key,
 nome varchar(30),
 email varchar(50),
 cnpj varchar(18)
+idFuncionario int,
 ) engine = innodb;
 
 create table if not exists livro(
 idLivro int not null auto_increment primary key,
+idLivraria int,
+idEditora int,
+idGenero int,
+idAutor int,
 nome varchar(50) not null unique,
 descricao text,
 total_paginas int,
-autor varchar(30) not null unique,
 livro_valor decimal(6,2),
-editora varchar(15),
 ano_de_publicacao varchar(4),
 edicao varchar(3)
 ) engine = innodb;
@@ -24,7 +27,7 @@ create table if not exists cliente(
 idCliente int not null unique auto_increment primary key,
 nome varchar (50),
 telefone varchar(12),
-livro int
+idLivro int
 ) engine = innodb;
 
 create table if not exists caixa (
@@ -43,11 +46,13 @@ livro int
 
 create table if not exists genero (
 idGenero int auto_increment not null primary key,
+idLivro int,
 nome varchar(25)
 ) engine = innodb;
 
 create table if not exists funcionario (
 idFuncionario int not null auto_increment primary key,
+idLivraria int,
 nome varchar(25),
 email varchar(50),
 matricula varchar(7),
@@ -58,6 +63,7 @@ create table if not exists editora (
 idEditora int not null auto_increment primary key,
 nome varchar(25),
 cnpj varchar(18)
+idLivro int,
 ) engine = innodb;
 
 insert into livraria values
@@ -111,104 +117,3 @@ insert into editora values
 (default, 'Objetiva', '10.261.558/0001-84'),
 (default, 'L&PM', '87.932.463/0001-70'),
 (default, 'BestSeller', '04.839.149/0001-10');
-
--- --------------------  Ligando as Tabelas  --------------------
-create table if not exists cliente_livro (
-idCliente int,
-idLivro int
-) engine = innodb;
-
-create table if not exists caixa_cliente_livro (
-idcaixa int,
-idcliente int,
-idlivro int
-) engine = innodb;
-
-create table if not exists carrinho_cliente_livro (
-idCarrinho int,
-idCliente int,
-idLivro int
-) engine = innodb;
-
-create table if not exists livraria_livro_funcionario(
-idLivraria int,
-idLivro int,
-idFuncionario int
-) engine = innodb;
-
-create table if not exists editora_autor(
-idEditora int,
-idAutor int
-) engine = innodb;
-
-create table if not exists genero_livro(
-idGenero int,
-idLivro int
-) engine = innodb;
-
--- Adicionando Foreign Key - Chave Estrangeira
--- cliente_livro
-alter table cliente_livro
-add constraint `fk_cliente` foreign key (`idCliente`)
-references `livraria`.`cliente` (`idCliente`);
-
-alter table cliente_livro
-add constraint `fk_cliente_livro` foreign key (`idLivro`)
-references `livraria`.`livro` (`idLivro`);
-
--- caixa_cliente_livro
-alter table caixa_cliente_livro
-add constraint `fk_caixa` foreign key (`idCaixa`)
-references `livraria`.`caixa` (`idCaixa`);
-
-alter table caixa_cliente_livro
-add constraint `fk_caixa_cliente` foreign key (`idCliente`)
-references `livraria`.`cliente` (`idCliente`);
-
-alter table caixa_cliente_livro
-add constraint `fk_caixa_livro` foreign key (`idLivro`)
-references `livraria`.`livro` (`idLivro`);
-
--- carrinho_cliente_caixa
-alter table carrinho_cliente_livro
-add constraint `fk_carrinho` foreign key (`idCarrinho`)
-references `livraria`.`carrinho` (`idCarrinho`);
-
-alter table carrinho_cliente_livro
-add constraint `fk_carrinho_cliente` foreign key (`idCliente`)
-references `livraria`.`cliente` (`idCliente`);
-
-alter table carrinho_cliente_livro
-add constraint `fk_carrinho_livro` foreign key (`idLivro`)
-references `livraria`.`livro` (`idLivro`);
-
--- Livraria_livro_funcionario
-alter table livraria_livro_funcionario
-add constraint `fk_livraraia` foreign key (`idLivraria`)
-references `livraria`.`livraria` (`idLivraria`);
-
-alter table livraria_livro_funcionario
-add constraint `fk_livraria_livro` foreign key (`idLivro`)
-references `livraria`.`livro` (`idLivro`);
-
-alter table livraria_livro_funcionario
-add constraint `fk_livraria_funcionario` foreign key (`idFuncionario`)
-references `livraria`.`funcionario` (`idFuncionario`);
-
--- editora_autor
-alter table editora_autor
-add constraint `fk_editora` foreign key (`idEditora`)
-references `livraria`.`editora` (`idEditora`);
-
-alter table editora_autor
-add constraint `fk_editora_autor` foreign key (`idAutor`)
-references `livraria`.`autor` (`idAutor`);
-
--- genero_livro
-alter table genero_livro
-add constraint `fk_genero` foreign key (`idGenero`)
-references `livraria`.`genero` (`idGenero`);
-
-alter table genero_livro
-add constraint `fk_genero_livro` foreign key (`idLivro`)
-references `livraria`.`livro` (`idLivro`);
