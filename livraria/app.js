@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const livro = require('./rotas/livro');
+const busca = require('./rotas/busca');
 //const genero = require('./rotas/genero');
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/v1/livro/', livro);
+app.use('/api/v1/busca/', busca);
 //app.use('/api/v1/genero', genero);
 
 module.exports = app;
