@@ -16,4 +16,14 @@ router.get('/livro/isbn/:id',
     }
 );
 
+router.get('/livro/autor/:id',
+    (req, res) => {
+        let sqlQry = 'SELECT * FROM livro where autor = ?';
+        let values = [req.params.id];
+
+        execSQLQuery(sqlQry, values, res);
+
+    }
+);
+
 module.exports = router;
